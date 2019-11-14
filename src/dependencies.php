@@ -3,6 +3,7 @@
 use Slim\App;
 use Todo\factories\controllers\AddToDoControllerFactory;
 use Todo\factories\controllers\GetAllToDosControllerFactory;
+use Todo\factories\controllers\HomepageControllerFactory;
 use Todo\factories\controllers\SetToDoCompleteByIDControllerFactory;
 use Todo\factories\controllers\SetToDoDeletedByIDControllerFactory;
 use Todo\factories\models\ToDoModelFactory;
@@ -35,6 +36,7 @@ return function (App $app) {
         return $db;
     };
 
+    $container['HomepageController'] = new HomepageControllerFactory();
     $container['ToDoModel'] = new ToDoModelFactory();
     $container['AddToDoController'] = new AddToDoControllerFactory();
     $container['GetAllToDosController'] = new GetAllToDosControllerFactory();
