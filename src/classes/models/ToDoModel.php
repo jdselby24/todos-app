@@ -52,7 +52,7 @@ class ToDoModel
      * @return boolean DB Success
      */
     public function  setToDoCompleteByID(int $id) : bool {
-        $statement = "UPDATE `todoes` SET (`completed` = 1) WHERE `id` = :id;";
+        $statement = "UPDATE `todos` SET `completed` = 1 WHERE `id` = :id;";
         $query = $this->db->prepare($statement);
         $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
         return $query->execute();

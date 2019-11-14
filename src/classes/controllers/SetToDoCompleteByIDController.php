@@ -49,7 +49,7 @@ class SetToDoCompleteByIDController
             $response['message'] = "Successfully set Todo: $todo_id completed";
             return $res->withJson($response, 200);
         } else {
-            $response['message'] = "DATABASE ERROR: Could not set todo complete";
+            $response['message'] = "DATABASE ERROR: Could not set todo: $todo_id complete";
             return $res->withJson($response, 500);
         }
     }
