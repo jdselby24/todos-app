@@ -36,7 +36,7 @@ class AddToDoController
         $addSuccess = $this->model->addToDo($newToDoName);
 
         if($addSuccess === true) {
-            $response = ['message' => "Todo $newToDoName was added", 'success' => true];
+            $response = ['message' => "Todo '$newToDoName' was added", 'success' => true];
             return $res->withJson($response, 200);
         } else {
             $response = ['message' => "ERROR WITH DB", 'success' => false];

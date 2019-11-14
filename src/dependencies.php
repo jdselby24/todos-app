@@ -25,7 +25,7 @@ return function (App $app) {
     /**
      * DB Object
      */
-    $dependencies['db'] = function($c) : PDO {
+    $container['db'] = function($c) : PDO {
         $db = new PDO('mysql:host=127.0.0.1;dbname=todo', 'root', 'password');
         return $db;
     };
