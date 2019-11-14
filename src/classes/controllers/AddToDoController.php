@@ -32,7 +32,7 @@ class AddToDoController
      */
     public function __invoke(Request $req, Response $res, array $args) : Response
     {
-        $newToDoName = $req->getParsedBody()['todo'];
+        $newToDoName = $req->getParsedBody()['todo_name'];
         $addSuccess = $this->model->addToDo($newToDoName);
 
         if($addSuccess === true) {
