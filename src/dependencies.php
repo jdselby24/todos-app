@@ -1,6 +1,7 @@
 <?php
 
 use Slim\App;
+use Todo\factories\models\ToDoModelFactory;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -27,5 +28,7 @@ return function (App $app) {
         $db = new PDO('mysql:host=127.0.0.1;dbname=todo', 'root', 'password');
         return $db;
     };
+
+    $container['ToDoModel'] = new ToDoModelFactory();
 
 };
