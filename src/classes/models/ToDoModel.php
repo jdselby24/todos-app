@@ -44,4 +44,17 @@ class ToDoModel
         $data = $query->fetchAll();
         return ["success" => $success, "data_todos" => $data];
     }
+
+    /**
+     * Set a todo complete by its ID
+     *
+     * @param integer $id An ID of a Todo
+     * @return boolean DB Success
+     */
+    public function  setToDoCompleteByID(int $id) : bool {
+        $statement = "UPDATE `todoes` SET (`completed` = 1) WHERE `id` = :id;";
+        $query = $this->db->prepare($statement);
+        $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
+        return $query->execute();
+    }
 }
