@@ -70,4 +70,19 @@ class ToDoModel
         $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
         return $query->execute();
     }
+
+    /**
+     * Update a todo by its ID
+     *
+     * @param integer $id An ID of a Todo
+     * @param string $name The name to rename todo to
+     * @return boolean DB Success
+     */
+    public function  updateToDoByID(int $id, string $name) : bool {
+        $statement = "UPDATE `todos` SET `name` = :name WHERE `id` = :id;";
+        $query = $this->db->prepare($statement);
+        $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
+        $query->bindParam(":name", $name, PDO::PARAM_STR, 512);
+        return $query->execute();
+    }
 }
