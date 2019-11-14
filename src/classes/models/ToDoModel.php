@@ -13,5 +13,5 @@ class ToDoModel
     {
         $this->db = $db;
     }
-    
+
 }
