@@ -7,7 +7,7 @@ use Todo\models\ToDoModel;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class SetToDoCompleteByID
+class SetToDoCompleteByIDController
 {
     /**
      * A ToDoModel
