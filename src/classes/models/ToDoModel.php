@@ -57,4 +57,17 @@ class ToDoModel
         $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
         return $query->execute();
     }
+
+    /**
+     * Set a todo deleted by its ID
+     *
+     * @param integer $id An ID of a Todo
+     * @return boolean DB Success
+     */
+    public function  setToDoDeletedByID(int $id) : bool {
+        $statement = "UPDATE `todos` SET `deleted` = 1 WHERE `id` = :id;";
+        $query = $this->db->prepare($statement);
+        $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
+        return $query->execute();
+    }
 }

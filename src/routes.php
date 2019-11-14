@@ -7,8 +7,9 @@ use Slim\Http\Response;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/', 'GetAllToDosController');
+    $app->get('/get', 'GetAllToDosController');
     $app->post('/add', 'AddToDoController');
-    $app->post('/complete', 'SetToDoCompleteByIDController');
+    $app->put('/complete', 'SetToDoCompleteByIDController');
+    $app->put('/delete', 'SetToDoDeletedByIDController');
 
 };
