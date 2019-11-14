@@ -11,5 +11,6 @@ return function (App $app) {
     $app->post('/add', 'AddToDoController');
     $app->put('/complete', 'SetToDoCompleteByIDController');
     $app->put('/delete', 'SetToDoDeletedByIDController');
+    $app->put('/update', 'UpdateToDoByIDController');
 
 };

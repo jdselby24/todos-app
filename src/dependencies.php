@@ -39,5 +39,5 @@ return function (App $app) {
     $container['GetAllToDosController'] = new GetAllToDosControllerFactory();
     $container['SetToDoCompleteByIDController'] = new SetToDoCompleteByIDControllerFactory();
     $container['SetToDoDeletedByIDController'] = new SetToDoDeletedByIDControllerFactory();
-
+    $container['UpdateToDoByIDController'] = new UpdateToDoByIDControllerFactory();
 };
