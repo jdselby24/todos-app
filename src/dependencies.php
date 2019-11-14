@@ -6,6 +6,7 @@ use Todo\factories\controllers\GetAllToDosControllerFactory;
 use Todo\factories\controllers\SetToDoCompleteByIDControllerFactory;
 use Todo\factories\controllers\SetToDoDeletedByIDControllerFactory;
 use Todo\factories\models\ToDoModelFactory;
+use Todo\factories\controllers\UpdateToDoByIDControllerFactory;
 
 return function (App $app) {
     $container = $app->getContainer();
