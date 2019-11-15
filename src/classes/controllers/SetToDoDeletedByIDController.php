@@ -47,7 +47,7 @@ class SetToDoDeletedByIDController
 
         if($success === true) {
             $response['message'] = "Successfully set Todo: $todo_id deleted";
-            return $res->withJson($response, 200);
+            return $res->withJson($response, 202);
         } else {
             $response['message'] = "DATABASE ERROR: Could not delete todo: $todo_id";
             return $res->withJson($response, 500);

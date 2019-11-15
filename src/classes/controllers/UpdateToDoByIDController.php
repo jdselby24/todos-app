@@ -48,7 +48,7 @@ class UpdateToDoByIDController
 
         if($success === true) {
             $response['message'] = "Successfully updated Todo: $todo_id with name $todo_name";
-            return $res->withJson($response, 200);
+            return $res->withJson($response, 202);
         } else {
             $response['message'] = "DATABASE ERROR: Could not update todo: $todo_id";
             return $res->withJson($response, 500);

@@ -37,7 +37,8 @@ class AddToDoController
 
         if($addSuccess === true) {
             $response = ['message' => "Todo '$newToDoName' was added", 'success' => true];
-            return $res->withJson($response, 200);
+            $response = \json_decode(\htmlentities(\json_encode($response)));
+            return $res->withJson($response, 201);
         } else {
             $response = ['message' => "ERROR WITH DB", 'success' => false];
             return $res->withJson($response, 500);

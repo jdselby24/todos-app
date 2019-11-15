@@ -38,11 +38,20 @@ class ToDoModel
      * @return array Array containing the result of the DB query
      */
     public function getAllToDos() : array {
-        $statement = "SELECT `id`,`name`,`completed` FROM `todos`;";
+        $statement = "SELECT `id`,`name`,`completed`,`deleted` FROM `todos` WHERE `deleted` = 0;";
         $query = $this->db->prepare($statement);
         $success = $query->execute();
         $data = $query->fetchAll();
         return ["success" => $success, "data_todos" => $data];
+    }
+
+    public function getToDoByID(string $id) : array {
+        $statement = "SELECT `id`,`name`,`completed` FROM `todos` WHERE `deleted` = 0 AND `id` = :id;";
+        $query = $this->db->prepare($statement);
+        $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
+        $success = $query->execute();
+        $data = $query->fetch();
+        return ["success" => $success, "data_todo" => $data];
     }
 
     /**
@@ -51,10 +60,11 @@ class ToDoModel
      * @param integer $id An ID of a Todo
      * @return boolean DB Success
      */
-    public function  setToDoCompleteByID(int $id) : bool {
-        $statement = "UPDATE `todos` SET `completed` = 1 WHERE `id` = :id;";
+    public function  setToDoCompleteByID(int $id, int $state) : bool {
+        $statement = "UPDATE `todos` SET `completed` = :state WHERE `id` = :id;";
         $query = $this->db->prepare($statement);
         $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
+        $query->bindParam(":state", $state, PDO::PARAM_INT, 1);
         return $query->execute();
     }
 
@@ -78,7 +88,7 @@ class ToDoModel
      * @param string $name The name to rename todo to
      * @return boolean DB Success
      */
-    public function  updateToDoByID(int $id, string $name) : bool {
+    public function  updateToDoByID(string $id, string $name) : bool {
         $statement = "UPDATE `todos` SET `name` = :name WHERE `id` = :id;";
         $query = $this->db->prepare($statement);
         $query->bindParam(":id", $id, PDO::PARAM_INT, 11);
