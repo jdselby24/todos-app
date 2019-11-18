@@ -34,22 +34,22 @@ class SetToDoCompleteByIDController
      * @param array $args Arguments
      * @return Response Response object
      */
-    public function __invoke(Request $req, Response $res, array $args) : Response
+    public function __invoke(Request $req, Response $res, array $args): Response
     {
         $todo_id = $req->getParsedBody()['todo_id'];
         $todo = $this->model->getToDoByID($todo_id);
         $todo_get_success = $todo['success'];
         $todo_data = $todo['data_todo'];
 
-        if($todo_get_success !== true) {
+        if ($todo_get_success !== true) {
             $response['message'] = "DATABASE ERROR: Could not change todo state: $todo_id for complete";
             return $res->withJson($response, 500);
         }
 
-        if($todo_data['completed'] == 0) {
+        if ($todo_data['completed'] == 0) {
             $success = $this->model->setToDoCompleteByID($todo_id, 1);
         } else {
-            $success = $this->model->setToDoCompleteByID($todo_id,0);
+            $success = $this->model->setToDoCompleteByID($todo_id, 0);
         }
 
         $response = [
@@ -58,8 +58,8 @@ class SetToDoCompleteByIDController
             "request" => $req->getParsedBody()
         ];
 
-        if($success === true) {
-            $response['message'] = "Successfully set Todo: $todo_id completed"; 
+        if ($success === true) {
+            $response['message'] = "Successfully set Todo: $todo_id completed";
             $response['info'] = $todo_data['completed'];
             return $res->withJson($response, 202);
         } else {
